@@ -1,4 +1,4 @@
-let ex3 = require('./bcd');
+let bcd = require('./bcd');
 
 // reverses a string.
 function reverseString(str) {
@@ -86,18 +86,8 @@ function decimalToBinary(value) {
     return binary;
 }
 
-function binaryToBcd(value) {
-    let dec = binaryToDecimal(value);
-    if(dec > 9) {
-        console.log('Number is not bcd. bcd numbers are four digits and range from 0000 (0) to 1001 (9)')
-        return
-    }
-    return value;
-}
-
-console.log('binaryToBcd', binaryToBcd('10010001'))
-
 module.exports = {
     b2d: binaryToDecimal,
-    d2b: decimalToBinary
+    d2b: decimalToBinary,
+    d2bcd: bcd
 }

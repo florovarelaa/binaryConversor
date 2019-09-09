@@ -1,6 +1,17 @@
+function bcdError() {
+    return console.log('Number is not bcd. bcd numbers are 4*#### and range from 0000 (0) to 1001 (9)');
+}
 
-function getbcd(value) {
-    const bcd = [
+function decimalError() {
+    return console.log('Number is not a positive decimal')
+}
+
+//input a bcd in a string or a decimal
+function bcd2dHash(value) {
+
+
+
+    const d2bcd = [
         {
             bcd: '0000',
             decimal: '0',
@@ -43,34 +54,64 @@ function getbcd(value) {
         }
     ]
 
-    let res = bcd.filter( e => e.bcd == value)
+    let decimal = d2bcd.filter( e => e.decimal === value);
     
-    if(res.length != 0) {
-        return res[0].bcd
-    } else {
-        console.log('Number is not bcd. bcd numbers are four digits and range from 0000 (0) to 1001 (9)')
+    let bcd = d2bcd.filter( e => e.bcd === value)
+
+    if(bcd.length != 0) {
+        return bcd[0]
+    } else if (decimal.length != 0) {
+        return decimal[0]
+    } else
         return
-    }
 }
 
-//checks if it is a 4 digit binary between 0 and 9
-function getBcd(value) {
+//input: string of bcd digits out || string of decimal numbers
+//output: [{bcd: '####', decimal: '#'},]
+function bcd2d(value) {
 
     let len = value.length;
     let arr = value.match(/.{1,4}/g);
 
-    if(!(len%4 === 0)) {
-        console.log('Number is not bcd. bcd numbers are #### four digits, or multiples')
-        return false
+    //bcd numbers are multiple of 4
+    if(!(len%4 === 0) || (value == "")) {
+        bcdError();
+        return
     } 
     
-    let todos = arr.every( e => {
-        return getbcd(e);
+    //incorrect bcd numbers will be returned as undefined
+    let bcdArray = arr.map( (e, index) => {
+        return bcd2dHash(e);
     })
 
-    return todos;
+    if (bcdArray) {
+        return bcdArray;
+    } else {
+        return;
+    }
+}
+
+function d2bcd(value) {
+    //Needs to be fixed for values with ","
+    
+    let decimal = value.split('');
+    
+    if(!decimal.every( (e, index) => {
+        // true if each character in the string is a number
+        return Number.isInteger(parseInt(decimal[index])) 
+    })) {
+        decimalError();
+        return;
+    }
+    
+    let binary = decimal.map( e => {
+        return bcd2dHash(e);
+    });
+
+    return value
 }
 
 module.exports = {
-    isbcd: isBcd
+    bcd2d: bcd2d,
+    d2bcd: d2bcd
 }

@@ -89,5 +89,6 @@ function decimalToBinary(value) {
 module.exports = {
     b2d: binaryToDecimal,
     d2b: decimalToBinary,
-    d2bcd: bcd
+    d2bcd: bcd.d2bcd,
+    bcd2d: bcd.bcd2d
 }

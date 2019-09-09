@@ -104,11 +104,11 @@ function d2bcd(value) {
         return;
     }
     
-    let binary = decimal.map( e => {
+    let bcd = decimal.map( e => {
         return bcd2dHash(e);
     });
 
-    return value
+    return bcd
 }
 
 module.exports = {

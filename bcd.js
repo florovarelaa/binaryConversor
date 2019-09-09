@@ -93,7 +93,11 @@ function bcd2d(value) {
 
 function d2bcd(value) {
     //Needs to be fixed for values with ","
-    
+    if(typeof value != 'string'){
+        decimalError();
+        return
+    } 
+
     let decimal = value.split('');
     
     if(!decimal.every( (e, index) => {

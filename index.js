@@ -1,49 +1,4 @@
-function getex3(value) {
-    const ex3 = [
-        {
-            binaryex3: '0000',
-            decimal: '0',
-        },
-        {
-            binaryex3: '0001',
-            decimal: '1',
-        },
-        {
-            binaryex3: '0010',
-            decimal: '2',
-        },
-        {
-            binaryex3: '0011',
-            decimal: '3',
-        },
-        {
-            binaryex3: '0100',
-            decimal: '4',
-        },
-        {
-            binaryex3: '0101',
-            decimal: '5',
-        },
-        {
-            binaryex3: '0110',
-            decimal: '6',
-        },
-        {
-            binaryex3: '0111',
-            decimal: '7',
-        },
-        {
-            binaryex3: '1000',
-            decimal: '8',
-        },
-        {
-            binaryex3: '1001',
-            decimal: '9',
-        }
-    ]
-    res = ex3.filter( e => e.binaryex3 == value)
-    return res[0].binaryex3;
-}
+let ex3 = require('./bcd');
 
 // reverses a string.
 function reverseString(str) {
@@ -80,32 +35,6 @@ function isBinary(value) {
     }
     return true
 }
-
-//checks if it is a 4 digit binary between 0 and 9
-function isExec3(value) {
-
-    let len = value.length;
-
-    if(!(len%4 === 0)) {
-        console.log('Number is not ex-3. ex-3 numbers are #### four digits')
-        return false
-    } 
-    if(!isBinary) {
-        console.log('Number is not ex-3. ex-3 numbers range from 0000 (0) to 1001 (9)')
-        return false
-    }
-
-    let ex3 = getex3(value);
-    if(!ex3) {
-        console.log('Number is not ex-3. ex-3 asdfsdnumbers range from 0000 (0) to 1001 (9)')
-        return false
-    }
-    console.log('ex3', ex3);
-
-    return true;
-}
-
-console.log('isExec3(####)', isExec3('1001'));
 
 //checks if it is a positive decimal number
 function isDecimal(value){
@@ -157,11 +86,16 @@ function decimalToBinary(value) {
     return binary;
 }
 
-function binaryToEx3(value) {
-    if (!isBinary(value)) {
+function binaryToBcd(value) {
+    let dec = binaryToDecimal(value);
+    if(dec > 9) {
+        console.log('Number is not bcd. bcd numbers are four digits and range from 0000 (0) to 1001 (9)')
         return
     }
+    return value;
 }
+
+console.log('binaryToBcd', binaryToBcd('10010001'))
 
 module.exports = {
     b2d: binaryToDecimal,

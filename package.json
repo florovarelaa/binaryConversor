@@ -1,6 +1,6 @@
 {
   "name": "binaryconversor",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Converts binary to decimal and decimal to binary",
   "main": "main.js",
   "scripts": {

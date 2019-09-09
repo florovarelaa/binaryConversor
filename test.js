@@ -1,4 +1,4 @@
-let conversor = require('binaryConversor');
+let conversor = require('./index.js');
 
 let d2b = conversor.d2b(13);
 

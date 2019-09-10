@@ -1,16 +1,22 @@
+// : ) : - However you want
+//
+
+// Shows error message.
 function bcdError() {
-    return console.log('Number is not bcd. bcd numbers are 4*#### and range from 0000 (0) to 1001 (9)');
+    return console.log('Number is not bcd as string. bcd numbers are 4*#### and range from 0000 (0) to 1001 (9)');
 }
 
+// Shows error message.
 function decimalError() {
-    return console.log('Number is not a positive decimal')
+    return console.log('Number is not a positive decimal as string')
 }
 
-//input a bcd in a string or a decimal
+// Receives a decimal or bcd number returns its corresponding bcd and decimal.
+// input: bcd or decimal as a string.
+// output: object of decimal and bcd number as a string.
 function bcd2dHash(value) {
 
-
-
+    //Step 1. Create the array of equivalences.
     const d2bcd = [
         {
             bcd: '0000',
@@ -54,10 +60,11 @@ function bcd2dHash(value) {
         }
     ]
 
+    //Step 2. Get the corresponding decimal and bcd values.
     let decimal = d2bcd.filter( e => e.decimal === value);
-    
     let bcd = d2bcd.filter( e => e.bcd === value)
 
+    //Step 3. Return any value obtained. 
     if(bcd.length != 0) {
         return bcd[0]
     } else if (decimal.length != 0) {
@@ -66,40 +73,44 @@ function bcd2dHash(value) {
         return
 }
 
-//input: string of bcd digits out || string of decimal numbers
-//output: [{bcd: '####', decimal: '#'},]
+//conbases a bcd number to decimal.
+//input: bcd number as string
+//output: array of objects: [{bcd: '####', decimal: '#'}]
 function bcd2d(value) {
-
+    //Step 1. Splits value into an array. Each position will have 4 digits
     let len = value.length;
     let arr = value.match(/.{1,4}/g);
 
-    //bcd numbers are multiple of 4
+    //Step2. verify that bcd number is multiple of 4
     if(!(len%4 === 0) || (value == "")) {
         bcdError();
         return
     } 
     
-    //incorrect bcd numbers will be returned as undefined
+    //Step 3. Match each string in the array with it's corresponding value in the Hashtable. Incorrect bcd numbers will be returned as undefined
     let bcdArray = arr.map( (e, index) => {
         return bcd2dHash(e);
     })
 
-    if (bcdArray) {
-        return bcdArray;
-    } else {
-        return;
-    }
+    return bcdArray;
 }
 
+//conbases a decimal number to bcd.
+//input: decimal number as string
+//output: array of objects: [{bcd: '####', decimal: '#'}]
 function d2bcd(value) {
     //Needs to be fixed for values with ","
+    
+    //Step 1. Verify if input is a string; 
     if(typeof value != 'string'){
         decimalError();
         return
     } 
 
+    //Step 2. Arrayifies the string value.  
     let decimal = value.split('');
     
+    //Step 3. Verifies if array for integers
     if(!decimal.every( (e, index) => {
         // true if each character in the string is a number
         return Number.isInteger(parseInt(decimal[index])) 
@@ -108,6 +119,7 @@ function d2bcd(value) {
         return;
     }
     
+    //Step 4. Looks for the number in the hastable, stores in the returned array.
     let bcd = decimal.map( e => {
         return bcd2dHash(e);
     });
@@ -115,6 +127,7 @@ function d2bcd(value) {
     return bcd
 }
 
+//Exports conbaseors
 module.exports = {
     bcd2d: bcd2d,
     d2bcd: d2bcd

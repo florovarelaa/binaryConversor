@@ -1,6 +1,6 @@
 {
-  "name": "baseconversor",
-  "version": "1.0.5",
+  "name": "conbaseor",
+  "version": "1.0.7",
   "description": "Converts between bases decimal, binary, bcd",
   "main": "main.js",
   "scripts": {

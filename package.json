@@ -10,10 +10,11 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/florovarelaa/binaryConversor.git"
+    "url": "git+https://github.com/florovarelaa/conbaseor.git"
   },
   "bugs": {
-    "url": "https://github.com/florovarelaa/binaryConversor/issues"
+    "url": "https://github.com/florovarelaa/conbaseor/issues"
   },
-  "homepage": "https://github.com/florovarelaa/binaryConversor#readme"
+  "homepage": "https://github.com/florovarelaa/conbaseor#readme",
+  "dependencies": {}
 }
